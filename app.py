@@ -67,6 +67,9 @@ with tab2:
    kmeans = KMeans(n_clusters=2, random_state=0)
    kmeans.fit(x_scaled)
    user_result = kmeans.predict(scaler.transform(user_data))
+   
+   # Calculate silhouette score
+   silhouette_avg = silhouette_score(x_scaled, kmeans.labels_)
       
    # COLOR FUNCTION
    if user_result[0] == 0:
@@ -153,4 +156,4 @@ else:
   output = 'You belong to Cluster 2'
 st.title(output)
 st.subheader('Accuracy: ')
-st.write('N/A')
+st.write(silhouette_avg)
